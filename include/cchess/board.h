@@ -14,6 +14,8 @@ typedef struct{
 } board;
 
 board* board_init();
+void board_place_pieces(board *b);
 void board_destroy(board *b);
+void board_print(board *b);
 
 #endif
