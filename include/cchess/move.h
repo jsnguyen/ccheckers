@@ -1,15 +1,14 @@
-#ifndef _MOVE_H_
+#ifndef _MOVE_H
 #define _MOVE_H
 
 #include <stdio.h>
+#include <stdlib.h>
+#include "cchess/piece.h"
+#include "cchess/ccoord.h"
 
-move_is_valid();
-move_check();
-move_pawn(piece* p);
-move_rook(piece* p);
-move_knight(piece* p);
-move_bishop(piece* p);
-move_king(piece* p);
-move_queen(piece* p);
+bool move_is_valid();
+bool move_check();
+ccoord* move_possibles(piece* p);
+void move_piece(piece* p, int choice);
 
 #endif

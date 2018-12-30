@@ -4,13 +4,20 @@ board* board_init(){
     board *b = (board*) malloc(sizeof(board));
     piece *ps = (piece*) malloc(N_PIECES*sizeof(piece));
     b->pieces = ps;
+
+    for(int i=0;i<DIM_X;i++){
+        for(int j=0;j<DIM_Y;j++){
+            b->spaces[i][j] = FALSE;
+        }
+    }
+
     return b;
 }
 
 void board_place_pieces(board *b){
     int i=0;
     int color;
-    char file;
+    unsigned char file;
     
     color=0;
 
@@ -55,5 +62,11 @@ void board_destroy(board *b){
 void board_print(board *b){
     for(int i=0; i<N_PIECES; i++){
         piece_print(&b->pieces[i]);
+    }
+    for(int j=0;j<DIM_Y;j++){
+        for(int i=0;i<DIM_X;i++){
+            printf("%i",b->spaces[i][j]);
+        }
+        printf("\n");
     }
 }

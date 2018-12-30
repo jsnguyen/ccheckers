@@ -11,7 +11,7 @@ EXECUTABLE=cchess.exe
 default: $(EXECUTABLE)
 all: default
 
-SOURCES=cchess.c piece.c board.c moves.c
+SOURCES=cchess.c piece.c ccoord.c board.c move.c
 OBJECTS=$(SOURCES:%.c=$(BUILDDIR)/%.o)
 
 $(BUILDDIR)/%.o: $(SRCDIR)/%.c
