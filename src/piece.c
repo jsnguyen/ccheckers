@@ -4,7 +4,7 @@ piece* piece_init(int c, char n, unsigned char f, int r){
     piece* p = (piece*) malloc(sizeof(piece)); 
     piece_set_color(p, c);
     piece_set_name(p, n);
-    ccoord_set(&p->cc,f,r); 
+    ccoord_set_individual(&p->cc,f,r); 
     return p;
 }
 
@@ -15,7 +15,7 @@ void piece_destroy(piece *p){
 void piece_set(piece *p, int c, char n, unsigned char f, int r){
     piece_set_color(p, c);
     piece_set_name(p, n);
-    ccoord_set(&p->cc,f,r); 
+    ccoord_set_individual(&p->cc,f,r); 
 }
 
 void piece_set_color(piece *p, int c){

@@ -13,7 +13,8 @@ typedef struct{
 
 ccoord* ccoord_init(unsigned char f, int r);
 void ccoord_destroy(ccoord *cc);
-void ccoord_set(ccoord *cc, unsigned char f, int r);
+void ccoord_set_individual(ccoord *cc, unsigned char f, int r);
+void ccoord_set(ccoord *cc, ccoord cco);
 void ccoord_set_file(ccoord *cc, unsigned char f);
 void ccoord_set_rank(ccoord *cc, int r);
 bool ccoord_is_equal(ccoord *cca, ccoord *ccb);

@@ -10,6 +10,7 @@ int main(int argc, char* argv[]){
 
     p = piece_init(1,'P','a',1);
     piece_print(p);
+    printf("is inside return: %i\n",move_is_inside(p->cc));
 
     piece_destroy(p);
 
@@ -18,24 +19,9 @@ int main(int argc, char* argv[]){
     b = board_init();
     board_place_pieces(b);
     board_print(b);
+    board_total_update(b);
+    board_print(b);
     board_destroy(b);
     
-    printf("R2N %i\n", R2N(1));
-    printf("R2N %i\n", R2N(2));
-    printf("R2N %i\n", R2N(3));
-    printf("R2N %i\n", R2N(4));
-    printf("R2N %i\n", R2N(5));
-    printf("R2N %i\n", R2N(6));
-    printf("R2N %i\n", R2N(7));
-    printf("R2N %i\n", R2N(8));
-    printf("F2N %i\n", F2N('a'));
-    printf("F2N %i\n", F2N('b'));
-    printf("F2N %i\n", F2N('c'));
-    printf("F2N %i\n", F2N('d'));
-    printf("F2N %i\n", F2N('e'));
-    printf("F2N %i\n", F2N('f'));
-    printf("F2N %i\n", F2N('g'));
-    printf("F2N %i\n", F2N('h'));
-
     return 0;
 }

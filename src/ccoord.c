@@ -12,9 +12,14 @@ void ccoord_destroy(ccoord *cc){
     free(cc);
 }
 
-void ccoord_set(ccoord *cc, unsigned char f, int r){
+void ccoord_set_individual(ccoord *cc, unsigned char f, int r){
     ccoord_set_file(cc,f);
     ccoord_set_rank(cc,r);
+}
+
+void ccoord_set(ccoord *cc, ccoord cco){
+    cc->file = cco.file;
+    cc->rank = cco.rank;
 }
 
 void ccoord_set_file(ccoord *cc, unsigned char f){
