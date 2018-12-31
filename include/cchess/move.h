@@ -8,7 +8,7 @@
 
 bool move_is_valid();
 bool move_check();
-ccoord* move_possibles(piece* p);
+ccoord* move_choices(piece* p);
 void move_piece(piece* p, int choice);
 
 #endif

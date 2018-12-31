@@ -59,6 +59,10 @@ void board_destroy(board *b){
     free(b);
 }
 
+void board_occupy(board *b, ccoord c){
+    b->spaces[F2N(c->file),R2N(c->rank)]=TRUE;
+}
+
 void board_print(board *b){
     for(int i=0; i<N_PIECES; i++){
         piece_print(&b->pieces[i]);
