@@ -30,6 +30,11 @@ void ccoord_set_rank(ccoord *cc, int r){
     cc->rank = r;
 }
 
+void ccoord_set_file_rank(ccoord *cc, unsigned char f,  int r){
+    cc->file = f;
+    cc->rank = r;
+}
+
 bool ccoord_is_equal(ccoord *cca, ccoord *ccb){
     if((cca->file == ccb->file) && (cca->rank == ccb->rank)){
         return TRUE;

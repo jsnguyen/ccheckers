@@ -17,6 +17,7 @@ void ccoord_set_individual(ccoord *cc, unsigned char f, int r);
 void ccoord_set(ccoord *cc, ccoord cco);
 void ccoord_set_file(ccoord *cc, unsigned char f);
 void ccoord_set_rank(ccoord *cc, int r);
+void ccoord_set_file_rank(ccoord *cc, unsigned char f,  int r);
 bool ccoord_is_equal(ccoord *cca, ccoord *ccb);
 
 #endif

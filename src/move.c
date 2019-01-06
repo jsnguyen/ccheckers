@@ -61,3 +61,23 @@ void move_piece(board* b, piece* p, ccoord* choices ,int choice){
     p->cc=choices[choice];
     board_occupy(b,p->cc); 
 }
+
+void delete_move(ccoord *moves, int size, int ind){
+    ccoord* temp_moves = (ccoord*) malloc((size-1)*sizeof(ccoord));
+    for(int i=0;i<size;i++){
+        if(i!=ind){
+            temp_moves[i] = moves[i];
+        }
+    }
+    free(moves);
+    moves = temp_moves;
+}
+
+ccoord* move_pawn_choices(piece *p){
+    ccoord *moves = (ccoord*) malloc(MAX_PAWN_MOVES*sizeof(ccoord));
+
+    set_file_rank( moves[0] , p->cc.file    , p->cc.rank+=1 );
+    set_file_rank( moves[1] , p->cc.file    , p->cc.rank+=2 );
+    set_file_rank( moves[2] , p->cc.file-=1 , p->cc.rank+=1 );
+    set_file_rank( moves[3] , p->cc.file+=1 , p->cc.rank+=1 );
+}
