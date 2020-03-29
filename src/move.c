@@ -1,7 +1,7 @@
-#include "cchess/move.h"
+#include "ccheckers/move.h"
 
 bool move_is_valid(){
-    
+  return TRUE;
 }
 
 bool move_is_inside(ccoord cco){
@@ -23,37 +23,11 @@ bool move_is_inside(ccoord cco){
 }
 
 bool move_is_collision(board b, ccoord cco){
-    return b.spaces[F2N(cco->file)][R2N(cco->rank)];
+    return TRUE;
 }
 
-bool move_check();
 ccoord* move_choices(piece* p){
-    ccoord* choices;
-
-    switch(p->name){
-        case 'R':
-            break;
-
-        case 'N':
-            break;
-
-        case 'B':
-            break;
-
-        case 'K':
-            break;
-
-        case 'Q':
-            break;
-
-        case 'P':
-            break;
-
-        default:
-            printf("Invalid name, cannot show moves!\n");
-    }
-
-    return choices;
+  return NULL;
 }
 
 void move_piece(board* b, piece* p, ccoord* choices ,int choice){
@@ -71,13 +45,4 @@ void delete_move(ccoord *moves, int size, int ind){
     }
     free(moves);
     moves = temp_moves;
-}
-
-ccoord* move_pawn_choices(piece *p){
-    ccoord *moves = (ccoord*) malloc(MAX_PAWN_MOVES*sizeof(ccoord));
-
-    set_file_rank( moves[0] , p->cc.file    , p->cc.rank+=1 );
-    set_file_rank( moves[1] , p->cc.file    , p->cc.rank+=2 );
-    set_file_rank( moves[2] , p->cc.file-=1 , p->cc.rank+=1 );
-    set_file_rank( moves[3] , p->cc.file+=1 , p->cc.rank+=1 );
 }

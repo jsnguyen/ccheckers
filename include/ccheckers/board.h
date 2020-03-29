@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "cchess/piece.h"
+#include "ccheckers/piece.h"
 
 #define DIM_X 8 /* file */
 #define DIM_Y 8 /* rank */

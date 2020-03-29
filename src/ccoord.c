@@ -1,4 +1,4 @@
-#include "cchess/ccoord.h"
+#include "ccheckers/ccoord.h"
 
 ccoord* ccoord_init(unsigned char f, int r){
     ccoord *cc = (ccoord*) malloc(sizeof(ccoord));

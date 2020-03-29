@@ -1,28 +1,50 @@
-INCLUDEDIR=include
+CXX=gcc
+
 SRCDIR=src
-BUILDDIR=build
+OBJDIR=build
 
-LIBS=-lm
-CC=gcc
-CFLAGS=-g -Wall -I$(INCLUDEDIR)
+_INCDIRS=include \
+				 ../../programs/jsmn
+INCDIRS=$(addprefix -I,$(_INCDIRS))
 
-EXECUTABLE=cchess.exe 
+_LIBDIRS=lib
+LIBDIRS=$(addprefix -L,$(_LIBDIRS))
 
-default: $(EXECUTABLE)
-all: default
+_LIBS=m
+LIBS=$(addprefix -l,$(_LIBS))
 
-SOURCES=cchess.c piece.c ccoord.c board.c move.c
-OBJECTS=$(SOURCES:%.c=$(BUILDDIR)/%.o)
+CXXFLAGS=-O3 -Wall $(INCDIRS) -fPIC
+LDFLAGS=-O3 -shared $(INCDIRS) $(LIBDIRS) $(LIBS)
 
-$(BUILDDIR)/%.o: $(SRCDIR)/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
+_SRCFILES=piece.c \
+					ccoord.c \
+					board.c \
+					move.c
 
+SRCS=$(addprefix $(SRCDIR)/,$(_SRCFILES))
 
-$(EXECUTABLE): $(OBJECTS)
-	$(CC) $(OBJECTS) -Wall $(LIBS) -o $@
+_OBJFILES=$(_SRCFILES:%.c=%.o)
+OBJS=$(addprefix $(OBJDIR)/,$(_OBJFILES))
 
-.PHONY: default all clean
+LIBDIR=lib
+LIB=libccheck.so
+
+DIRGUARD=@mkdir -p $(@D)
+
+all: $(LIBDIR)/$(LIB)
+
+$(LIBDIR)/$(LIB) : $(OBJS)
+	$(DIRGUARD)
+	$(CXX) $(OBJS) -o $@ $(LDFLAGS)
+
+$(OBJDIR)/%.o : $(SRCDIR)/%.c
+	$(DIRGUARD)
+	$(CXX) $< -c -o $@ $(CXXFLAGS)
+
+.SECONDARY: $(OBJS)
+.PHONY: clean
 
 clean:
-	-rm -f $(OBJECTS)
-	-rm -f $(EXECUTABLE)
+	rm $(OBJDIR)/*.o
+	rm $(LIBDIR)/*.so
+	rmdir $(OBJDIR) $(LIBDIR)

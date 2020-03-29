@@ -1,4 +1,4 @@
-#include "cchess/board.h"
+#include "ccheckers/board.h"
 
 board* board_init(){
     board *b = (board*) malloc(sizeof(board));
@@ -17,43 +17,33 @@ board* board_init(){
 void board_place_pieces(board *b){
     int i=0;
     int color;
-    unsigned char file;
-    
-    b->n_pieces = N_PIECES;
-    
-    color=0;
+    char file;
 
-    file='a';
-    piece_set(&b->pieces[i++],color, 'R', file++,1);
-    piece_set(&b->pieces[i++],color, 'N', file++,1);
-    piece_set(&b->pieces[i++],color, 'B', file++,1);
-    piece_set(&b->pieces[i++],color, 'K', file++,1);
-    piece_set(&b->pieces[i++],color, 'Q', file++,1);
-    piece_set(&b->pieces[i++],color, 'B', file++,1);
-    piece_set(&b->pieces[i++],color, 'N', file++,1);
-    piece_set(&b->pieces[i++],color, 'R', file++,1);
-
-    file='a';
-    for(int j=0; j<N_PIECES/4; j++){
-        piece_set(&b->pieces[i++],color,'P',file++,2);
+    for(int i=1;i<DIM_X;i+=2){
+      b->spaces[i][0] = TRUE;
     }
 
-    color=1;
-
-    file='a';
-    for(int j=0; j<N_PIECES/4; j++){
-        piece_set(&b->pieces[i++],color,'P',file++,7);
+    for(int i=0;i<DIM_X;i+=2){
+      b->spaces[i][1] = TRUE;
     }
-    
-    file='a';
-    piece_set(&b->pieces[i++],color, 'R', file++,8);
-    piece_set(&b->pieces[i++],color, 'N', file++,8);
-    piece_set(&b->pieces[i++],color, 'B', file++,8);
-    piece_set(&b->pieces[i++],color, 'K', file++,8);
-    piece_set(&b->pieces[i++],color, 'Q', file++,8);
-    piece_set(&b->pieces[i++],color, 'B', file++,8);
-    piece_set(&b->pieces[i++],color, 'N', file++,8);
-    piece_set(&b->pieces[i++],color, 'R', file++,8);
+
+    for(int i=1;i<DIM_X;i+=2){
+      b->spaces[i][2] = TRUE;
+    }
+
+    //piece_set(b->pieces[i], 0, TRUE, 'a', 1);
+
+    for(int i=0;i<DIM_X;i+=2){
+      b->spaces[i][DIM_Y-3] = TRUE;
+    }
+
+    for(int i=1;i<DIM_X;i+=2){
+      b->spaces[i][DIM_Y-2] = TRUE;
+    }
+
+    for(int i=0;i<DIM_X;i+=2){
+      b->spaces[i][DIM_Y-1] = TRUE;
+    }
 }
 
 void board_destroy(board *b){
