@@ -6,19 +6,11 @@
 
 int main(int argc, char* argv[]){
     
-    piece* p;
+    board b;
+    board_place_pieces(&b);
 
-    p = piece_init(1,TRUE,'a',1);
-    piece_print(p);
-    piece_destroy(p);
-
-    board *b;
-    b = board_init();
-    board_place_pieces(b);
+    //board_print_pieces(b);
     board_print(b);
-    board_total_update(b);
-    board_print(b);
-    board_destroy(b);
     
     return 0;
 }

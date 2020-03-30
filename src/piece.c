@@ -1,9 +1,9 @@
 #include "ccheckers/piece.h"
 
-piece* piece_init(int c, bool ik, unsigned char f, int r){
+piece* piece_init(color_t col, bool king, int X, int Y){
     piece* p = (piece*) malloc(sizeof(piece)); 
-    piece_set_color(p, c);
-    ccoord_set_individual(&p->cc,f,r); 
+    piece_set_color(p, col);
+    ccoord_set(&p->cc,X,Y); 
     return p;
 }
 
@@ -11,15 +11,24 @@ void piece_destroy(piece *p){
     free(p);
 }
 
-void piece_set(piece *p, int c, bool ik, unsigned char f, int r){
-    piece_set_color(p, c);
-    ccoord_set_individual(&p->cc,f,r); 
+void piece_set(piece *p, color_t col, bool king, int X, int Y){
+    piece_set_color(p, col);
+    piece_set_is_king(p, king);
+    ccoord_set(&p->cc,X,Y); 
 }
 
-void piece_set_color(piece *p, int c){
-    p->color = c;
+void piece_set_color(piece *p, color_t colo){
+    p->color = colo;
 }
 
-void piece_print(piece *p){
-    printf("%i%i %c%i\n", p->color, p->is_king, p->cc.file, p->cc.rank);   
+void piece_set_is_king(piece *p, bool king){
+    p->is_king = king;
+}
+
+ccoord piece_get_cc(piece p){
+  return p.cc;
+}
+
+void piece_print(piece p){
+    printf("%i%i %i%i\n", p.color, p.is_king, p.cc.x, p.cc.y);   
 }

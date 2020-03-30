@@ -6,15 +6,18 @@
 #include "ccheckers/ccoord.h"
 
 typedef struct{
-    int color;
+    color_t color;
     bool is_king;
     ccoord cc;
 } piece;
 
-piece* piece_init(int c, bool ik, unsigned char f, int r);
+piece* piece_init(color_t col, bool king, int X, int Y);
 void piece_destroy(piece* p);
-void piece_set(piece *p, int c, bool ik, unsigned char f, int r);
-void piece_set_color(piece *p, int c);
-void piece_print(piece *p);
+void piece_set(piece *p, color_t col, bool king, int X, int Y);
+void piece_set_color(piece *p, color_t colo);
+void piece_set_is_king(piece *p, bool king);
+
+ccoord piece_get_cc(piece p);
+void piece_print(piece p);
 
 #endif

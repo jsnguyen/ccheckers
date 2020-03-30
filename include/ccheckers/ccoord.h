@@ -5,19 +5,20 @@
 #include <stdlib.h>
 
 typedef enum {FALSE,TRUE} bool;
+typedef enum {WHITE,BLACK} color_t;
 
 typedef struct{
-    unsigned char file;
-    int rank;
+    int x,y;
 } ccoord;
 
-ccoord* ccoord_init(unsigned char f, int r);
+ccoord* ccoord_init(int x, int y);
+
 void ccoord_destroy(ccoord *cc);
-void ccoord_set_individual(ccoord *cc, unsigned char f, int r);
-void ccoord_set(ccoord *cc, ccoord cco);
-void ccoord_set_file(ccoord *cc, unsigned char f);
-void ccoord_set_rank(ccoord *cc, int r);
-void ccoord_set_file_rank(ccoord *cc, unsigned char f,  int r);
+
+void ccoord_set(ccoord *cc, int X, int Y);
+void ccoord_set_x(ccoord *cc, int X);
+void ccoord_set_y(ccoord *cc, int Y);
+
 bool ccoord_is_equal(ccoord *cca, ccoord *ccb);
 
 #endif
