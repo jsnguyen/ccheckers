@@ -14,6 +14,11 @@ void ccoord_set(ccoord *cc, int X, int Y){
   cc->y = Y;
 }
 
+void ccoord_set_equal(ccoord *a, ccoord b){
+  a->x = b.x;
+  a->y = b.y;
+}
+
 void ccoord_set_x(ccoord *cc, int X){
   cc->x = X;
 }
@@ -28,4 +33,8 @@ bool ccoord_is_equal(ccoord *cca, ccoord *ccb){
   } else {
     return FALSE;
   }
+}
+
+void ccoord_print(ccoord cc){
+  printf("%i,%i\n",cc.x,cc.y);
 }

@@ -7,16 +7,13 @@
 #include "ccheckers/ccoord.h"
 #include "ccheckers/board.h"
 
-bool move_is_valid();
+#define MAX_N_POSSIBLE_MOVES 4
+
+bool move_is_valid(board b, ccoord cco);
 bool move_is_inside(ccoord cco);
 bool move_is_collision(board b, ccoord cco);
 
-bool move_is_check();
-bool move_is_checkmate();
-
-ccoord* move_choices(piece* p);
-void move_piece(board* b, piece* p, ccoord* choices ,int choice);
-
-void delete_move(ccoord *moves, int size, int ind);
+void move_choices(board b, piece p, ccoord *moves, int *n_possible_moves);
+void move_piece(piece* p, ccoord cc);
 
 #endif

@@ -22,8 +22,8 @@ void board_place_pieces(board *b){
     piece_set(&b->white_pieces[white_index++], WHITE, FALSE, i, 2);
   }
 
-  int black_index=0;
-  for(int i=1; i<DIM_X; i+=2){
+ int black_index=0;
+ for(int i=1; i<DIM_X; i+=2){
     piece_set(&b->black_pieces[black_index++], BLACK, FALSE, i, DIM_Y-1);
   }
   for(int i=0; i<DIM_X; i+=2){
@@ -51,6 +51,7 @@ void board_print(board b){
 
   bool board[DIM_X][DIM_Y];
 
+  // set the whole board to false/zero
   for(int i=0; i<DIM_X; i++){
     for(int j=0; j<DIM_Y; j++){
       board[i][j]=FALSE;
@@ -67,29 +68,28 @@ void board_print(board b){
   }
 
   printf("BLACK\n");
-  int row_counter = DIM_Y-1;
-  for(int i=0; i<DIM_X; i++){
+  for(int j=DIM_Y-1; j>=0; j--){
 
-    printf("%i| ",row_counter--); // prints the row number on the left side
-
-    // printing backwards so 0 corresponds to the last row printed
-    for(int j=DIM_Y-1; j>=0; j--){
-      if(j!=DIM_Y-1){
-        printf("  ");
-      }
-      printf("%i",board[j][i]);
-    }
-
-    // newline at the end of every line
-    printf("\n");
-
-    // extra newline to make aspect ratio ~square
-    // don't print a newline on the last line to save space
-    if(i!=DIM_X-1){
+    if(j!=DIM_Y-1){
       printf("\n");
     }
-    
+
+    printf("%i| ",j); // prints the row counter on the left
+    for(int i=0; i<DIM_X; i++){
+
+      if(i!=0){
+        printf(" ");
+      }
+
+      printf("%i ",board[i][j]);
+
+    }
+
+    printf("\n"); // extra newline after every row
+
   }
+
+  // print the bottom row counter
   printf("   _  _  _  _  _  _  _  _\n");
   printf("   0  1  2  3  4  5  6  7\n");
   printf("WHITE\n");

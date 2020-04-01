@@ -1,20 +1,30 @@
 #include "ccheckers/piece.h"
 
 piece* piece_init(color_t col, bool king, int X, int Y){
-    piece* p = (piece*) malloc(sizeof(piece)); 
-    piece_set_color(p, col);
-    ccoord_set(&p->cc,X,Y); 
-    return p;
+  piece* p = (piece*) malloc(sizeof(piece)); 
+  piece_set_color(p, col);
+  ccoord_set(&p->cc,X,Y); 
+  return p;
 }
 
 void piece_destroy(piece *p){
-    free(p);
+  free(p);
 }
 
 void piece_set(piece *p, color_t col, bool king, int X, int Y){
-    piece_set_color(p, col);
-    piece_set_is_king(p, king);
-    ccoord_set(&p->cc,X,Y); 
+  piece_set_color(p, col);
+  piece_set_is_king(p, king);
+  ccoord_set(&p->cc,X,Y); 
+}
+
+void piece_set_equal(piece *a, piece b){
+  a->cc.x = b.cc.x;
+  a->cc.y = b.cc.y;
+}
+
+void piece_set_cc(piece *p, ccoord cc){
+  p->cc.x = cc.x;
+  p->cc.y = cc.y;
 }
 
 void piece_set_color(piece *p, color_t colo){
